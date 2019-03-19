@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Navbar, Nav } from 'react-bootstrap';
-import Search from "../search/search";
+import Search from '../search/search';
+import Login from '../login/login'
 
 class Navigation extends Component {
 
@@ -11,6 +12,9 @@ class Navigation extends Component {
           <Navbar.Brand href="">Bloggingapp</Navbar.Brand>
           <Navbar.Toggle/>
           <Navbar.Collapse>
+            <Nav>
+              <Login/>
+            </Nav>
             <Nav className="mr-auto">
             </Nav>
             <Nav>
