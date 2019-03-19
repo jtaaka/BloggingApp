@@ -8,9 +8,11 @@ class Navigation extends Component {
     return (
       <div>
         <Navbar collapseOnSelect expand="sm" bg="dark" variant="dark" sticky="top">
-          <Navbar.Brand href="#">Bloggingapp</Navbar.Brand>
+          <Navbar.Brand href="">Bloggingapp</Navbar.Brand>
           <Navbar.Toggle/>
           <Navbar.Collapse>
+            <Nav className="mr-auto">
+            </Nav>
             <Nav>
               <Search/>
             </Nav>
