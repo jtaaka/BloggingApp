@@ -6,13 +6,11 @@ import InputGroup from "react-bootstrap/InputGroup";
 const URL = "http:////localhost:8080/posts";
 
 class Search extends Component {
-  state = {filter: ""};
-
   constructor(props) {
       super(props);
+      this.state = {filter: ""};
 
       this.handleChange = this.handleChange.bind(this);
-      this.initSearch = this.initSearch.bind(this);
       this.search = this.search.bind(this);
   }
 
@@ -35,19 +33,13 @@ class Search extends Component {
       }
     }
 
-  initSearch() {
-    if (this.state.filter !== "") {
-        return this.search
-    }
-  }
-
   render() {
     return (
       <div>
          <InputGroup>
              <FormControl onChange={this.handleChange} placeholder="Search..."/>
              <InputGroup.Append>
-                 <Button onClick={this.initSearch}>Search</Button>
+                 <Button onClick={this.search}>Search</Button>
              </InputGroup.Append>
          </InputGroup>
       </div>
