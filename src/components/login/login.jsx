@@ -7,7 +7,7 @@ class Login extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {username: "ad", password: "", loggedIn: false};
+    this.state = {username: "", password: "", loggedIn: false};
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.validateForm = this.validateForm.bind(this);
@@ -61,7 +61,7 @@ class Login extends Component {
   }
 
   logout() {
-    this.setState({loggedIn: false})
+    this.setState({username: "", password: "", loggedIn: false})
   }
 
   render() {
