@@ -71,7 +71,7 @@ class Login extends Component {
           <Form onSubmit={this.handleSubmit}>
             <InputGroup>
               <FormControl id="username" onChange={this.handleChange} placeholder="Enter username" className="mr-sm-2"/>
-              <FormControl id="password" onChange={this.handleChange} placeholder="Enter password"/>
+              <FormControl id="password" type="password" onChange={this.handleChange} placeholder="Enter password"/>
               <InputGroup.Append>
                 <Button
                     variant="primary"
