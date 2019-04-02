@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Navigation from './components/navigation/navigation'
 import Blogposts from './components/blogposts/blogposts'
-import Container from "react-bootstrap/Container";
 
 class App extends Component {
 
@@ -9,7 +8,9 @@ class App extends Component {
     return (
       <div>
         <Navigation/>
-        <Blogposts/>
+        <div id="content">
+          <Blogposts/>
+        </div>
       </div>
     );
   }

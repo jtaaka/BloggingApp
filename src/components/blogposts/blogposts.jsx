@@ -21,7 +21,7 @@ class Blogposts extends Component {
 
   render() {
     return (
-      <div class="card text-center">
+      <div className="card text-center">
         {this.state.blogposts.map( post =>
           <Card border="dark" style={{ width: '60%', margin: '0 auto', marginTop: "25px" }}>
             <Card.Body>

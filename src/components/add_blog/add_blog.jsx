@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Button, Form } from "react-bootstrap";
 import * as ReactDOM from "react-dom";
+import Blogposts from "../blogposts/blogposts";
 
 const URL = "http://localhost:8080/posts";
 
@@ -15,6 +16,7 @@ class Add_blog extends Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.renderMain = this.renderMain.bind(this);
     this.add = this.add.bind(this);
   }
 
@@ -39,6 +41,12 @@ class Add_blog extends Component {
     }).then(() => console.log(this.state.title + " " + this.state.content))
   }
 
+  renderMain() {
+    ReactDOM.render(
+        <Blogposts/>
+        , document.getElementById("content"))
+  }
+
   add() {
     ReactDOM.render(
     <div className="mx-auto">
@@ -46,6 +54,7 @@ class Add_blog extends Component {
       <Form.Control id="title" onChange={this.handleChange} placeholder="Enter title" className="mr-sm-2"/>
       <Form.Label>Content</Form.Label>
       <Form.Control id="content" as="textarea" rows="5" placeholder="Enter text" onChange={this.handleChange}/>
+      <Button className="btn btn-primary float-left" onClick={this.renderMain}>Back to Blogs</Button>
       <Button className="btn btn-primary float-right" onClick={this.handleSubmit}>Submit</Button>
     </div>
     , document.getElementById("content"))
