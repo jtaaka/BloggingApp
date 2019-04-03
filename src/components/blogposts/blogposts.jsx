@@ -56,12 +56,12 @@ class Blogposts extends Component {
               <Card.Text>
                 {post.content}
               </Card.Text>
+              <Button className="btn float-left" id={post.id} onClick={(e) => this.editPost(e.target.id, post.title, post.content)} variant="secondary">Edit</Button>
+              <Button className="btn btn-primary float-right" id={post.id} onClick={(e) => this.delete(e.target.id)}>Delete</Button>
             </Card.Body>
             <Card.Footer>
               <small className="text-muted">Posted at {post.date}</small>
             </Card.Footer>
-            <Button id={post.id} onClick={(e) => this.editPost(e.target.id, post.title, post.content)} variant="secondary">Edit</Button>
-            <Button className="btn btn-primary float-right" id={post.id} onClick={(e) => this.delete(e.target.id)}>Delete</Button>
           </Card>)}
       </div>
     );
