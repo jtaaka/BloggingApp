@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Button, FormControl, InputGroup, Form } from "react-bootstrap";
-import Add_blog from "../add_blog/add_blog";
+import Addpost from "../addpost/addpost";
 
 const URL = "http://localhost:8080/users/login";
 
@@ -89,7 +89,7 @@ class Login extends Component {
           <InputGroup>
             <InputGroup.Text>Logged In as, {this.state.username}</InputGroup.Text>
             <InputGroup.Append>
-              <Add_blog/>
+              <Addpost/>
             </InputGroup.Append>
             <InputGroup.Append>
               <Button onClick={this.logout}>Log Out</Button>

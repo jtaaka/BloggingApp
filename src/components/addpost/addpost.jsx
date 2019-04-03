@@ -5,7 +5,7 @@ import Blogposts from "../blogposts/blogposts";
 
 const URL = "http://localhost:8080/posts";
 
-class Add_blog extends Component {
+class Addpost extends Component {
   constructor(props) {
     super(props);
 
@@ -67,4 +67,4 @@ class Add_blog extends Component {
   }
 }
 
-export default Add_blog;
+export default Addpost;
