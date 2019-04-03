@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import {Button, Card} from "react-bootstrap";
-import { Card, Button } from "react-bootstrap";
 import Editpost from "../editpost/editpost";
 import * as ReactDOM from "react-dom";
 
@@ -64,7 +63,6 @@ class Blogposts extends Component {
             <Button id={post.id} onClick={(e) => this.editPost(e.target.id, post.title, post.content)} variant="secondary">Edit</Button>
             <Button className="btn btn-primary float-right" id={post.id} onClick={(e) => this.delete(e.target.id)}>Delete</Button>
           </Card>)}
-        )}
       </div>
     );
   }
