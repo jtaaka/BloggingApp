@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import { Navbar, Nav } from 'react-bootstrap';
+import { Navbar, Nav, Button } from 'react-bootstrap';
 import Search from '../search/search';
 import Login from '../login/login'
+import { NavLink } from 'react-router-dom'
 
 class Navigation extends Component {
 
@@ -9,7 +10,11 @@ class Navigation extends Component {
     return (
       <div>
         <Navbar collapseOnSelect expand="sm" bg="dark" variant="dark" sticky="top">
-          <Navbar.Brand>Bloggingapp</Navbar.Brand>
+          <NavLink exact to="/">
+            <Navbar.Brand>
+              BlogApp
+            </Navbar.Brand>
+          </NavLink>
           <Navbar.Toggle/>
           <Navbar.Collapse>
             <Nav>
@@ -20,6 +25,7 @@ class Navigation extends Component {
             <Nav>
               <Search/>
             </Nav>
+            <Button onClick={this.addBlogpost}>Add new blogpost</Button>
           </Navbar.Collapse>
         </Navbar>
       </div>

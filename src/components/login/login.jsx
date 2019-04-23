@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Button, FormControl, InputGroup, Form } from "react-bootstrap";
-import Addpost from "../addpost/addpost";
+import { withRouter } from 'react-router'
 
 const URL = "http://localhost:8080/users/login";
 
@@ -13,7 +13,8 @@ class Login extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.validateForm = this.validateForm.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.logout = this.logout.bind(this);
+    this.addBlogpost  = this.addBlogpost.bind(this);
+    this.logout       = this.logout.bind(this);
   }
 
   validateForm() {
@@ -65,6 +66,10 @@ class Login extends Component {
     this.setState({username: "", password: "", loggedIn: false})
   }
 
+  addBlogpost() {
+    this.props.history.push("/addpost")
+  }
+
   render() {
 
     if (this.state.loggedIn === false) {
@@ -88,8 +93,8 @@ class Login extends Component {
       return (
           <InputGroup>
             <InputGroup.Text>Logged In as, {this.state.username}</InputGroup.Text>
+              <Button onClick={this.addBlogpost}>Add new blogpost</Button>
             <InputGroup.Append>
-              <Addpost/>
             </InputGroup.Append>
             <InputGroup.Append>
               <Button onClick={this.logout}>Log Out</Button>
@@ -100,4 +105,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default withRouter(Login);
