@@ -1,17 +1,24 @@
 import React, { Component } from 'react';
-import Navigation from './components/navigation/navigation'
-import Blogposts from './components/blogposts/blogposts'
+import Navigation from './components/navigation/navigation';
+import Blogposts from './components/blogposts/blogposts';
+import Addpost from './components/addpost/addpost';
+import Editpost from './components/editpost/editpost';
+
+
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 class App extends Component {
 
   render() {
     return (
-      <div>
-        <Navigation/>
-        <div id="content">
-          <Blogposts/>
-        </div>
-      </div>
+      <BrowserRouter>
+        <Navigation />
+        <Switch>
+          <Route exact path = "/" component={Blogposts} />
+          <Route exact path = "/addpost" component={Addpost} />
+          <Route exact path = "/editpost" component={Editpost} />
+        </Switch>
+      </BrowserRouter>
     );
   }
 }
