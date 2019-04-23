@@ -25,7 +25,6 @@ class Navigation extends Component {
             <Nav>
               <Search/>
             </Nav>
-            <Button onClick={this.addBlogpost}>Add new blogpost</Button>
           </Navbar.Collapse>
         </Navbar>
       </div>
