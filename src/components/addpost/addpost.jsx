@@ -16,6 +16,7 @@ class Addpost extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.toFrontPage = this.toFrontPage.bind(this);
+    this.validateForm = this.validateForm.bind(this);
   }
 
   handleChange = event => {
@@ -37,12 +38,15 @@ class Addpost extends Component {
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(requestBody)
     }).then(() => console.log(this.state.title + " " + this.state.content))
-      .then(() => 
-        this.props.history.push("/"));
+      .then(() => this.props.history.push("/"));
   }
 
   toFrontPage() {
     this.props.history.push("/");
+  }
+
+  validateForm() {
+    return this.state.title !== "" && this.state.content !== "";
   }
 
   render() {
@@ -53,7 +57,7 @@ class Addpost extends Component {
         <Form.Label>Content</Form.Label>
           <Form.Control id="content" as="textarea" rows="5" placeholder="Enter text" onChange={this.handleChange} />
         <Button className="btn btn-primary float-left" onClick={this.toFrontPage}>Back to Blogs</Button>
-        <Button className="btn btn-primary float-right" onClick={this.handleSubmit}>Submit</Button>
+        <Button className="btn btn-primary float-right" disabled={!this.validateForm()} onClick={this.handleSubmit}>Submit</Button>
       </div>
     );
   }

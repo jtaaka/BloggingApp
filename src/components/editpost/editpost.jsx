@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Button, Form } from "react-bootstrap";
-import * as ReactDOM from "react-dom";
-import Blogposts from "../blogposts/blogposts";
+import { withRouter } from "react-router-dom";
 
 const URL = "http://localhost:8080/posts";
 
@@ -9,15 +8,18 @@ class Editpost extends Component {
   constructor(props) {
     super(props);
 
+    let passedParameters = props.location.state;
+
     this.state = {
-      id: this.props.id,
-      title: this.props.title,
-      content: this.props.content
+      id: passedParameters.editid,
+      title: passedParameters.edittitle,
+      content: passedParameters.editcontent
     }
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.renderMain = this.renderMain.bind(this);
+    this.toFrontPage = this.toFrontPage.bind(this);
+    this.validateForm = this.validateForm.bind(this);
   }
 
   handleChange = event => {
@@ -40,12 +42,15 @@ class Editpost extends Component {
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(requestBody)
     }).then(() => console.log(this.state.id + " " + this.state.title + " " + this.state.content))
+      .then(() => this.props.history.push("/"));
   }
 
-  renderMain() {
-    ReactDOM.render(
-      <Blogposts/>
-      , document.getElementById("content"))
+  toFrontPage() {
+    this.props.history.push("/");
+  }
+
+  validateForm() {
+    return this.state.title !== "" && this.state.content !== "";
   }
 
   render() {
@@ -55,11 +60,11 @@ class Editpost extends Component {
         <Form.Control id="title" value={this.state.title} onChange={this.handleChange} className="mr-sm-2"/>
         <Form.Label>Content</Form.Label>
         <Form.Control id="content" as="textarea" value={this.state.content} rows="5" onChange={this.handleChange}/>
-        <Button className="btn btn-primary float-left" onClick={this.renderMain}>Back to Blogs</Button>
-        <Button className="btn btn-primary float-right" onClick={this.handleSubmit}>Submit</Button>
+        <Button className="btn btn-primary float-left" onClick={this.toFrontPage}>Back to front page</Button>
+        <Button className="btn btn-primary float-right" disabled={!this.validateForm()} onClick={this.handleSubmit}>Submit</Button>
       </div>
     );
   }
 }
 
-export default Editpost;
+export default withRouter(Editpost);
