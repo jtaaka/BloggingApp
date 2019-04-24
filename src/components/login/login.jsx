@@ -1,6 +1,11 @@
 import React, { Component } from "react";
 import { Button, FormControl, InputGroup, Form } from "react-bootstrap";
 import { withRouter } from 'react-router'
+import Cookies from "js-cookie";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import './login.css';
 
 const URL = "http://localhost:8080/users/login";
 
@@ -13,8 +18,6 @@ class Login extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.validateForm = this.validateForm.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.addBlogpost  = this.addBlogpost.bind(this);
-    this.logout       = this.logout.bind(this);
   }
 
   validateForm() {
@@ -57,51 +60,52 @@ class Login extends Component {
             status = false;
           }
         }).then(() => { if(status) {
-        this.setState({loggedIn: true})
+            this.setState({loggedIn: true});
+            Cookies.set("loggedIn", true);
+            Cookies.set("username", requestBody.username);
+            this.props.history.push("/")
         } else {
-          this.setState({loggedIn: false})}});
-  }
-
-  logout() {
-    this.setState({username: "", password: "", loggedIn: false})
-  }
-
-  addBlogpost() {
-    this.props.history.push("/addpost")
-  }
+            this.setState({loggedIn: false});
+    }})}
 
   render() {
-
-    if (this.state.loggedIn === false) {
       return (
-          <Form onSubmit={this.handleSubmit}>
-            <InputGroup>
-              <FormControl id="username" onChange={this.handleChange} placeholder="Enter username" className="mr-sm-2"/>
-              <FormControl id="password" type="password" onChange={this.handleChange} placeholder="Enter password"/>
-              <InputGroup.Append>
+          <div id="loginContainer">
+              <Container>
+                 <Col>
+                <Form onSubmit={this.handleSubmit}>
+              <Row className="justify-content-center" id="form">
+                <FormControl id="username" onChange={this.handleChange} placeholder="Enter username" />
+              </Row>
+              <Row className="justify-content-center" id="form">
+                <FormControl id="password" type="password" onChange={this.handleChange} placeholder="Enter password" />
+              </Row>
+                <Row className="justify-content-center">
                 <Button
+                    id="form-button"
+                    width="auto"
+                    size="md" block
                     variant="primary"
                     disabled={!this.validateForm()}
                     type="submit">
                   Log in
                 </Button>
-              </InputGroup.Append>
-            </InputGroup>
+                </Row>
+                <Row className="justify-content-center">
+                <Button
+                    id="form-button"
+                    variant="primary"
+                    size="md" block
+                    onClick={() => {
+                    this.props.history.push("/any")}}>
+                    Continue as a guest
+                </Button>
+                </Row>
           </Form>
-      );
-    } else {
-      return (
-          <InputGroup>
-            <InputGroup.Text>Logged In as, {this.state.username}</InputGroup.Text>
-              <Button onClick={this.addBlogpost}>Add new blogpost</Button>
-            <InputGroup.Append>
-            </InputGroup.Append>
-            <InputGroup.Append>
-              <Button onClick={this.logout}>Log Out</Button>
-            </InputGroup.Append>
-          </InputGroup>
-      );
-    }
+           </Col>
+          </Container>
+          </div>
+      )
   }
 }
 

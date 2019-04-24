@@ -1,0 +1,35 @@
+#password {
+    text-align: center;
+}
+
+#username {
+    text-align: center;
+}
+
+#loginContainer {
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    width: 40%;
+    transform: translate(-50%, -50%);
+
+}
+
+#loginSignupHeader {
+    color: #f5f5f5;
+    text-align:center;
+}
+
+h6 {
+    color: #f5f5f5;
+    text-align: center;
+    padding-top: 15%;
+}
+
+#form {
+    margin-top: 2%;
+}
+
+#form-button {
+    margin-top: 2%;
+}
