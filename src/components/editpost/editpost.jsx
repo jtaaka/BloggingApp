@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Button, Form } from "react-bootstrap";
 import { withRouter } from "react-router-dom";
+import Container from "react-bootstrap/Container";
+import './editpost.css';
 
 const URL = "http://localhost:8080/posts";
 
@@ -55,14 +57,22 @@ class Editpost extends Component {
 
   render() {
     return (
-      <div className="mx-auto">
-        <Form.Label>Title</Form.Label>
-        <Form.Control id="title" value={this.state.title} onChange={this.handleChange} className="mr-sm-2"/>
-        <Form.Label>Content</Form.Label>
-        <Form.Control id="content" as="textarea" value={this.state.content} rows="5" onChange={this.handleChange}/>
-        <Button className="btn btn-primary float-left" onClick={this.toFrontPage}>Back to front page</Button>
-        <Button className="btn btn-primary float-right" disabled={!this.validateForm()} onClick={this.handleSubmit}>Submit</Button>
-      </div>
+        <Container>
+          <div className="mx-auto">
+            <div id="title-text">
+              <Form.Label>Title</Form.Label>
+              <Form.Control id="edit-title" value={this.state.title} onChange={this.handleChange} className="mr-sm-2"/>
+            </div>
+            <div id="title-text">
+              <Form.Label>Content</Form.Label>
+              <Form.Control id="edit-content" as="textarea" value={this.state.content} rows="5" onChange={this.handleChange}/>
+            </div>
+            <div id="buttons">
+              <Button className="btn btn-primary float-left" onClick={this.toFrontPage}>Back to front page</Button>
+              <Button className="btn btn-primary float-right" disabled={!this.validateForm()} onClick={this.handleSubmit}>Submit</Button>
+            </div>
+          </div>
+        </Container>
     );
   }
 }
