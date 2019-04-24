@@ -61,11 +61,11 @@ class Editpost extends Component {
           <div className="mx-auto">
             <div id="title-text">
               <Form.Label>Title</Form.Label>
-              <Form.Control id="edit-title" value={this.state.title} onChange={this.handleChange} className="mr-sm-2"/>
+              <Form.Control id="title" value={this.state.title} onChange={this.handleChange} className="mr-sm-2"/>
             </div>
             <div id="title-text">
               <Form.Label>Content</Form.Label>
-              <Form.Control id="edit-content" as="textarea" value={this.state.content} rows="5" onChange={this.handleChange}/>
+              <Form.Control id="content" as="textarea" value={this.state.content} rows="5" onChange={this.handleChange}/>
             </div>
             <div id="buttons">
               <Button className="btn btn-primary float-left" onClick={this.toFrontPage}>Back to front page</Button>

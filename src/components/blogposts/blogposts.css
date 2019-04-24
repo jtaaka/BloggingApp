@@ -5,7 +5,7 @@
     text-decoration-color: aqua;
 }
 
-#content {
+#bg-content {
     margin-top: 1%;
     background-image: -webkit-gradient(linear, left top, left bottom, from(#EFEFEF), to(#DFDFDF));
 }

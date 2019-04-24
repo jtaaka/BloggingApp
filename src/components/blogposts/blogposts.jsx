@@ -70,7 +70,7 @@ class Blogposts extends Component {
 
   render() {
     return (
-      <Container id="content-container">
+      <Container>
         <Row className="justify-content-md-center">
           <Col xl={7} xs={12}>
             <InputGroup id="searchInputGroup">
@@ -78,7 +78,7 @@ class Blogposts extends Component {
             </InputGroup>
           </Col>
         </Row>
-      <div className="card text-center" id="content">
+      <div className="card text-center" id="bg-content">
         {this.state.filteredBlogposts.map( post =>
           <Card key={post.id} border="dark" style={{ width: '60%', margin: '0 auto', marginTop: "25px" }}>
             <Card.Body>

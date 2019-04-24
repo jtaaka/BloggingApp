@@ -57,11 +57,11 @@ class Addpost extends Component {
           <div className="mx-auto">
             <div id="title-text">
               <Form.Label>Title</Form.Label>
-              <Form.Control id="add-title" onChange={this.handleChange} placeholder="Enter title" className="mr-sm-2" />
+              <Form.Control id="title" onChange={this.handleChange} placeholder="Enter title" className="mr-sm-2" />
             </div>
             <div id="title-text">
               <Form.Label>Content</Form.Label>
-              <Form.Control id="add-content" as="textarea" rows="5" placeholder="Enter text" onChange={this.handleChange} />
+              <Form.Control id="content" as="textarea" rows="5" placeholder="Enter text" onChange={this.handleChange} />
             </div>
             <div id="buttons">
               <Button className="btn btn-primary float-left" onClick={this.toFrontPage}>Back to Blogs</Button>
