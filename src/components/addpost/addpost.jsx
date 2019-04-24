@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Button, Form } from "react-bootstrap";
 import { withRouter } from "react-router-dom";
+import Container from "react-bootstrap/Container";
+import './addpost.css';
 
 const URL = "http://localhost:8080/posts";
 
@@ -51,14 +53,22 @@ class Addpost extends Component {
 
   render() {
     return (
-      <div className="mx-auto">
-        <Form.Label>Title</Form.Label>
-          <Form.Control id="title" onChange={this.handleChange} placeholder="Enter title" className="mr-sm-2" />
-        <Form.Label>Content</Form.Label>
-          <Form.Control id="content" as="textarea" rows="5" placeholder="Enter text" onChange={this.handleChange} />
-        <Button className="btn btn-primary float-left" onClick={this.toFrontPage}>Back to Blogs</Button>
-        <Button className="btn btn-primary float-right" disabled={!this.validateForm()} onClick={this.handleSubmit}>Submit</Button>
-      </div>
+        <Container>
+          <div className="mx-auto">
+            <div id="title-text">
+              <Form.Label>Title</Form.Label>
+              <Form.Control id="add-title" onChange={this.handleChange} placeholder="Enter title" className="mr-sm-2" />
+            </div>
+            <div id="title-text">
+              <Form.Label>Content</Form.Label>
+              <Form.Control id="add-content" as="textarea" rows="5" placeholder="Enter text" onChange={this.handleChange} />
+            </div>
+            <div id="buttons">
+              <Button className="btn btn-primary float-left" onClick={this.toFrontPage}>Back to Blogs</Button>
+              <Button className="btn btn-primary float-right" disabled={!this.validateForm()} onClick={this.handleSubmit}>Submit</Button>
+            </div>
+          </div>
+        </Container>
     );
   }
 }
