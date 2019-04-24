@@ -69,7 +69,7 @@ class Editpost extends Component {
             </div>
             <div id="buttons">
               <Button className="btn btn-primary float-left" onClick={this.toFrontPage}>Back to front page</Button>
-              <Button className="btn btn-primary float-right" disabled={!this.validateForm()} onClick={this.handleSubmit}>Submit</Button>
+              <Button className="btn btn-primary float-right" variant="success" disabled={!this.validateForm()} onClick={this.handleSubmit}>Submit</Button>
             </div>
           </div>
         </Container>

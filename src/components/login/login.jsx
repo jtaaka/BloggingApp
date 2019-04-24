@@ -69,43 +69,38 @@ class Login extends Component {
     }})}
 
   render() {
-      return (
-          <div id="loginContainer">
-              <Container>
-                 <Col>
-                <Form onSubmit={this.handleSubmit}>
-              <Row className="justify-content-center" id="form">
-                <FormControl id="username" onChange={this.handleChange} placeholder="Enter username" />
-              </Row>
-              <Row className="justify-content-center" id="form">
-                <FormControl id="password" type="password" onChange={this.handleChange} placeholder="Enter password" />
-              </Row>
-                <Row className="justify-content-center">
-                <Button
-                    id="form-button"
-                    width="auto"
-                    size="md" block
-                    variant="primary"
-                    disabled={!this.validateForm()}
-                    type="submit">
-                  Log in
-                </Button>
-                </Row>
-                <Row className="justify-content-center">
-                <Button
-                    id="form-button"
-                    variant="primary"
-                    size="md" block
-                    onClick={() => {
-                    this.props.history.push("/any")}}>
-                    Continue as a guest
-                </Button>
-                </Row>
-          </Form>
-           </Col>
-          </Container>
-          </div>
-      )
+    return (
+        <Container id="loginContainer">
+          <Row className="justify-content-center" id="form">
+            <Col xl={6} lg={7} md={7} sm={10} xs={12}>
+              <Form onSubmit={this.handleSubmit}>
+              <FormControl id="username" onChange={this.handleChange} placeholder="Enter username" />
+              <FormControl id="password" type="password" onChange={this.handleChange} placeholder="Enter password" />
+            
+              <Button
+                id="form-button"
+                width="auto"
+                size="md" block
+                variant="primary"
+                disabled={!this.validateForm()}
+                type="submit">
+                Log in
+              </Button>
+            
+              <Button
+                id="form-button"
+                variant="primary"
+                size="md" block
+                onClick={() => {
+                this.props.history.push("/any")}}>
+                Continue as a guest
+              </Button>
+              
+            </Form>
+          </Col>
+        </Row>
+      </Container>
+    )
   }
 }
 

@@ -43,7 +43,7 @@ class Blogposts extends Component {
     fetch(DELETE_URL + id, {
       method: 'DELETE',
       headers: {'Content-Type': 'application/json'},
-    }).then(() => console.log("Deleted blogpost id = " + id)).then(() =>
+    }).then(() => 
     fetch(URL, {
       method: 'GET',
       headers: {'Content-Type': 'application/json'},
@@ -74,49 +74,53 @@ class Blogposts extends Component {
   render() {
     return (
       <Container>
-        <Row className="justify-content-md-center">
-          <Col xl={7} xs={12}>
+        <Row className="justify-content-center">
+          <Col xl={10} lg={10} md={10} sm={10} xs={12}>
+            <h2 id ="header2">Search for blogpost</h2>
             <InputGroup id="searchInputGroup">
               <Form.Control type="text" placeholder="Search..." onChange={this.search}/>
             </InputGroup>
           </Col>
         </Row>
-      <div className="card text-center" id="bg-content">
+      
         {this.state.filteredBlogposts.map( post =>
-          <Card key={post.id} border="dark" style={{ width: '60%', margin: '0 auto', marginTop: "25px" }}>
-            <Card.Body>
-              <Card.Title>{post.title}</Card.Title>
-              <Card.Text>
-                {post.content}
-              </Card.Text>
+        <Row className="justify-content-center">
+          <Col xl={10} lg={10} md={10} sm={10} xs={12}>
+            <Card key={post.id} border="dark">
+              <Card.Body>
+                <Card.Title id ="centered">{post.title}</Card.Title>
+                <Card.Text>
+                  {post.content}
+                </Card.Text>
 
-              <Link 
-                style={{ textDecoration: 'none' }} 
-                to={{
-                  pathname: '/editpost/',
-                  state: {
-                    editid: post.id,
-                    edittitle: post.title,
-                    editcontent: post.content 
-                    }
-                  }}>
-                <Button 
-                  className="btn float-left" 
-                  id={post.id} 
-                  variant="secondary">
-                  Edit
-                </Button>
-              </Link>
+                <Link 
+                  style={{ textDecoration: 'none' }} 
+                  to={{
+                    pathname: '/editpost/',
+                    state: {
+                      editid: post.id,
+                      edittitle: post.title,
+                      editcontent: post.content 
+                      }
+                    }}>
+                  <Button 
+                    className="btn float-left" 
+                    id={post.id} 
+                    variant="primary">
+                    Edit
+                  </Button>
+                </Link>
 
-            <Button className="btn float-right" id={post.id} onClick={() => this.delete(post.id)} variant="secondary">Delete</Button>
-              
-            </Card.Body>
-            <Card.Footer>
-              <small className="text-muted">Posted at {post.date}</small>
-            </Card.Footer>
-            <Comment id={post.id}/>
-          </Card>)}
-      </div>
+              <Button className="btn float-right" id={post.id} onClick={() => this.delete(post.id)} variant="danger">Delete</Button>
+                
+              </Card.Body>
+              <Card.Footer>
+                <small className="text-muted">Posted at {post.date}</small>
+              </Card.Footer>
+              <Comment id={post.id}/>
+            </Card>
+          </Col>
+        </Row>)}
       </Container>
     );
   }

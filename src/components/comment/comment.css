@@ -5,4 +5,10 @@
 #header2 {
     margin-top: 5%;
     margin-bottom: 5%;
+    text-align: center;
+}
+
+#commentButton {
+    margin-top: 1%;
+    margin-bottom: 1%;
 }
