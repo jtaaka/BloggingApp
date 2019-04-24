@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {Button, Card} from "react-bootstrap";
+import {Button, Card, Form, InputGroup} from "react-bootstrap";
 import Editpost from "../editpost/editpost";
 import { Link } from "react-router-dom";
 
@@ -10,8 +10,16 @@ class Blogposts extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {blogposts: [], editid: "", edittitle: "", editcontent: ""};
+    this.state = {
+      blogposts: [],
+      editid: "",
+      edittitle: "",
+      editcontent: "",
+      filteredBlogposts: [],
+      filter: ""
+    };
     this.delete = this.delete.bind(this);
+    this.search = this.search.bind(this);
     //this.editPost = this.editPost.bind(this);
   }
 
@@ -21,11 +29,10 @@ class Blogposts extends Component {
       headers: {'Content-Type': 'application/json'},
     })
       .then(response => response.json())
-      .then(data => this.setState({ blogposts: data }));
+      .then(data => this.setState({ blogposts: data, filteredBlogposts: data}));
   }
 
   delete(id) {
-    console.log(id)
     fetch(DELETE_URL + id, {
       method: 'DELETE',
       headers: {'Content-Type': 'application/json'},
@@ -35,13 +42,35 @@ class Blogposts extends Component {
       headers: {'Content-Type': 'application/json'},
     })
       .then(response => response.json())
-      .then(data => this.setState({ blogposts: data })));
+      .then(data => this.setState({ blogposts: data}))
+        .then(() => this.search(this.state.filter)));
+  }
+
+  search(e) {
+    let filtered = [];
+
+    filtered = this.state.blogposts.filter((blogpost) => {
+      if (e !== this.state.filter) {
+        return blogpost.title.toLowerCase().includes(e.target.value.toLowerCase());
+      } else {
+        return blogpost.title.toLowerCase().includes(this.state.filter);
+      }
+    });
+
+    if (e !== this.state.filter) {
+      this.setState({filteredBlogposts: filtered, filter: e.target.value.toLowerCase()});
+    } else {
+      this.setState({filteredBlogposts: filtered});
+    }
   }
 
   render() {
     return (
       <div className="card text-center">
-        {this.state.blogposts.map( post =>
+        <InputGroup id="searchInputGroup">
+          <Form.Control type="text" placeholder="Search..." onChange={this.search}/>
+        </InputGroup>
+        {this.state.filteredBlogposts.map( post =>
           <Card key={post.id} border="dark" style={{ width: '60%', margin: '0 auto', marginTop: "25px" }}>
             <Card.Body>
               <Card.Title>{post.title}</Card.Title>
