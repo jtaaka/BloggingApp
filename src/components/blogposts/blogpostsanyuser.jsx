@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import {Button, Card, Form, InputGroup} from "react-bootstrap";
-import Editpost from "../editpost/editpost";
 import {Link, withRouter} from "react-router-dom";
 import './blogposts.css';
 import Row from "react-bootstrap/Row";
@@ -10,24 +9,20 @@ import Cookies from "js-cookie";
 import Comment from '../comment/comment';
 
 const URL = "http://localhost:8080/posts";
-const COMMENT_URL = 'http://localhost:8080/comments';
 const DELETE_URL = "http://localhost:8080/posts/";
 
-class Blogposts extends Component {
+class Blogpostsanyuser extends Component {
   constructor(props) {
     super(props);
 
+
     this.state = {
       blogposts: [],
-      editid: "",
-      edittitle: "",
-      editcontent: "",
       filteredBlogposts: [],
       filter: ""
     };
-    this.delete = this.delete.bind(this);
+
     this.search = this.search.bind(this);
-    //this.editPost = this.editPost.bind(this);
   }
 
   componentDidMount() {
@@ -37,20 +32,6 @@ class Blogposts extends Component {
     })
       .then(response => response.json())
       .then(data => this.setState({ blogposts: data, filteredBlogposts: data}));
-  }
-
-  delete(id) {
-    fetch(DELETE_URL + id, {
-      method: 'DELETE',
-      headers: {'Content-Type': 'application/json'},
-    }).then(() => console.log("Deleted blogpost id = " + id)).then(() =>
-    fetch(URL, {
-      method: 'GET',
-      headers: {'Content-Type': 'application/json'},
-    })
-      .then(response => response.json())
-      .then(data => this.setState({ blogposts: data}))
-        .then(() => this.search(this.state.filter)));
   }
 
   search(e) {
@@ -89,27 +70,6 @@ class Blogposts extends Component {
               <Card.Text>
                 {post.content}
               </Card.Text>
-
-              <Link 
-                style={{ textDecoration: 'none' }} 
-                to={{
-                  pathname: '/editpost/',
-                  state: {
-                    editid: post.id,
-                    edittitle: post.title,
-                    editcontent: post.content 
-                    }
-                  }}>
-                <Button 
-                  className="btn float-left" 
-                  id={post.id} 
-                  variant="secondary">
-                  Edit
-                </Button>
-              </Link>
-
-            <Button className="btn float-right" id={post.id} onClick={() => this.delete(post.id)} variant="secondary">Delete</Button>
-              
             </Card.Body>
             <Card.Footer>
               <small className="text-muted">Posted at {post.date}</small>
@@ -122,4 +82,4 @@ class Blogposts extends Component {
   }
 }
 
-export default withRouter(Blogposts);
+export default withRouter(Blogpostsanyuser);
