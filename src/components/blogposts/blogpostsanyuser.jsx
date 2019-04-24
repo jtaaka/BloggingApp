@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Card, Form, InputGroup } from "react-bootstrap";
+import { Card, Form, InputGroup, Button } from "react-bootstrap";
 import { withRouter } from "react-router-dom";
 import './blogposts.css';
 import Row from "react-bootstrap/Row";
@@ -78,6 +78,18 @@ class Blogpostsanyuser extends Component {
           </Card>
         </Col>
         </Row>)}
+        <Row className="justify-content-center">
+          <Col xl={10} lg={10} md={10} sm={10} xs={12}>
+            <Button
+              id="back-button"
+              variant="primary"
+              size="md" block
+              onClick={() => {
+              this.props.history.push("/login")}}>
+              Back to login
+            </Button>
+          </Col>
+        </Row>
       </Container>
     );
   }
