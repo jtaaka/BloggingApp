@@ -2,6 +2,10 @@ import React, { Component } from "react";
 import {Button, Card, Form, InputGroup} from "react-bootstrap";
 import Editpost from "../editpost/editpost";
 import { Link } from "react-router-dom";
+import './blogposts.css';
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Container from "react-bootstrap/Container";
 
 const URL = "http://localhost:8080/posts";
 const DELETE_URL = "http://localhost:8080/posts/";
@@ -66,10 +70,15 @@ class Blogposts extends Component {
 
   render() {
     return (
-      <div className="card text-center">
-        <InputGroup id="searchInputGroup">
-          <Form.Control type="text" placeholder="Search..." onChange={this.search}/>
-        </InputGroup>
+      <Container id="content-container">
+        <Row className="justify-content-md-center">
+          <Col xl={7} xs={12}>
+            <InputGroup id="searchInputGroup">
+              <Form.Control type="text" placeholder="Search..." onChange={this.search}/>
+            </InputGroup>
+          </Col>
+        </Row>
+      <div className="card text-center" id="content">
         {this.state.filteredBlogposts.map( post =>
           <Card key={post.id} border="dark" style={{ width: '60%', margin: '0 auto', marginTop: "25px" }}>
             <Card.Body>
@@ -104,6 +113,7 @@ class Blogposts extends Component {
             </Card.Footer>
           </Card>)}
       </div>
+      </Container>
     );
   }
 }

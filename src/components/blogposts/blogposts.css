@@ -1,0 +1,11 @@
+#searchInputGroup {
+    text-align:left;
+    margin-top: 2%;
+    color: beige;
+    text-decoration-color: aqua;
+}
+
+#content {
+    margin-top: 1%;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#EFEFEF), to(#DFDFDF));
+}
