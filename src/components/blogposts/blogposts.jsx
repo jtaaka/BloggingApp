@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 import {Button, Card, Form, InputGroup} from "react-bootstrap";
-import Editpost from "../editpost/editpost";
 import { Link } from "react-router-dom";
 import './blogposts.css';
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
+import Comment from '../comment/comment';
 
 const URL = "http://localhost:8080/posts";
+const COMMENT_URL = 'http://localhost:8080/comments'; 
 const DELETE_URL = "http://localhost:8080/posts/";
 
 class Blogposts extends Component {
@@ -20,11 +21,11 @@ class Blogposts extends Component {
       edittitle: "",
       editcontent: "",
       filteredBlogposts: [],
-      filter: ""
+      filter: "",
     };
+
     this.delete = this.delete.bind(this);
     this.search = this.search.bind(this);
-    //this.editPost = this.editPost.bind(this);
   }
 
   componentDidMount() {
@@ -47,7 +48,7 @@ class Blogposts extends Component {
     })
       .then(response => response.json())
       .then(data => this.setState({ blogposts: data}))
-        .then(() => this.search(this.state.filter)));
+      .then(() => this.search(this.state.filter)));
   }
 
   search(e) {
@@ -111,6 +112,7 @@ class Blogposts extends Component {
             <Card.Footer>
               <small className="text-muted">Posted at {post.date}</small>
             </Card.Footer>
+            <Comment id={post.id}/>
           </Card>)}
       </div>
       </Container>

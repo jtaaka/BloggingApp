@@ -1,0 +1,90 @@
+import React, { Component } from "react";
+import { Button, Form, Card } from "react-bootstrap";
+import Container from "react-bootstrap/Container";
+import './comment.css';
+
+const URL_POST = "http://localhost:8080/comment";
+const ALL_COMMENTS = "http://localhost:8080/comments";
+
+class Comment extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      content: '',
+      comments: []
+    }
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.validateForm = this.validateForm.bind(this);
+  }
+
+  componentDidMount() {
+    fetch(ALL_COMMENTS, {
+        method: 'GET',
+        headers: {'Content-Type': 'application/json'},
+      })
+        .then(response => response.json())
+        .then(data => this.setState( {comments: data} ));
+    }
+
+  handleChange = event => {
+    event.preventDefault();
+
+    this.setState( {[event.target.id]: event.target.value} );
+  }
+
+  handleSubmit = event => {
+    event.preventDefault();
+
+    let requestBody = {
+      content: this.state.content,
+      postId: this.props.id
+    };
+
+    fetch(URL_POST, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(requestBody)
+    }).then(response => response.json())
+      .then(data => this.setState({comments: [...this.state.comments, data]}));
+  }
+
+  validateForm() {
+    return this.state.content !== "";
+  }
+
+  render() {
+    const commentsByPost = this.state.comments.map(comment => {
+      if (comment.postId === this.props.id) {
+        return (
+          <Card id="padding">
+            {comment.content}
+            <Card.Footer>
+               <small className="text-muted">Posted at {comment.date}</small>
+            </Card.Footer>
+          </Card>
+        ) 
+      }
+    });
+
+    return (
+      <Container>
+          <h2 id="header2">Comments</h2>
+          {commentsByPost}
+        <div className="mx-auto">
+            <Form.Label>Add comment</Form.Label>
+            <Form.Control id="content" as="textarea" rows="5" placeholder="Write a comment..." onChange={this.handleChange} />
+            <Button className="btn btn-primary float-left" 
+                    disabled={!this.validateForm()} 
+                    onClick={this.handleSubmit}>
+                    Submit
+            </Button>
+        </div>
+      </Container>
+    );
+  }
+}
+
+export default Comment;
