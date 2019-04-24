@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Navbar, Nav, Button } from 'react-bootstrap';
-import Search from '../search/search';
 import Login from '../login/login'
 import { NavLink } from 'react-router-dom'
 
@@ -21,9 +20,6 @@ class Navigation extends Component {
               <Login/>
             </Nav>
             <Nav className="mr-auto">
-            </Nav>
-            <Nav>
-              <Search/>
             </Nav>
           </Navbar.Collapse>
         </Navbar>
