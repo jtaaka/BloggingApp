@@ -9,3 +9,8 @@
     margin-top: 1%;
     background-image: -webkit-gradient(linear, left top, left bottom, from(#EFEFEF), to(#DFDFDF));
 }
+
+#back-button {
+    margin-top: 1%;
+    margin-bottom: 1%;
+}

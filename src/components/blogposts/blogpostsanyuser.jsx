@@ -77,6 +77,14 @@ class Blogpostsanyuser extends Component {
             <Comment id={post.id}/>
           </Card>)}
       </div>
+        <Button
+            id="back-button"
+            variant="primary"
+            size="md" block
+            onClick={() => {
+              this.props.history.push("/login")}}>
+          Back to login
+        </Button>
       </Container>
     );
   }
